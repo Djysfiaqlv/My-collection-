@@ -11,6 +11,7 @@
       color: #ffffff;
     }
     header {
+      <input type="text" id="searchInput" placeholder="Search movies or files..." class="search-box">
       background: #111;
       padding: 15px;
       text-align: center;
@@ -86,7 +87,34 @@
       border-top: 1px solid #222;
     }
   </style>
+  .search-box {
+  width: 90%;
+  max-width: 400px;
+  margin: 15px auto;
+  display: block;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #1a1a1a;
+  color: #fff;
+  text-align: center;
+}
 </head>
+   <script>
+const searchInput = document.getElementById("searchInput");
+const movieCards = document.querySelectorAll(".movie-card");
+
+searchInput.addEventListener("keyup", function () {
+  const value = searchInput.value.toLowerCase();
+
+  movieCards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = text.includes(value) ? "block" : "none";
+  });
+});
+</script>
 <body><header>My Collection</header><div class="container">
   <div class="movie-grid"><!-- Movie / File Card 1 -->
 <div class="movie-card">
