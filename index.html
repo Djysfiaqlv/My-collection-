@@ -220,7 +220,21 @@ searchInput.addEventListener("keyup", () => {
     card.style.display = text.includes(value) ? "block" : "none";
   });
 });
-  </script></body>
+  </script>
+  <script>
+const searchInput = document.getElementById("searchInput");
+const movieCards = document.querySelectorAll(".movie-card");
+
+searchInput.addEventListener("keyup", () => {
+  const value = searchInput.value.toLowerCase();
+
+  movieCards.forEach(card => {
+    const text = card.innerText.toLowerCase();
+    card.style.display = text.includes(value) ? "block" : "none";
+  });
+});
+  </script>
+</body>
 </html>
 <div class="movie-card">
   <img src=<a href="https://ibb.co/5Wm4DqGd"><img src="https://i.ibb.co/qMKjGb7z/96ea5411a3b23a2e9cb6ff643dda4594.jpg" alt="96ea5411a3b23a2e9cb6ff643dda4594" border="0"></a>"="File Thumbnail" />
