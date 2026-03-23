@@ -1,280 +1,346 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Collection</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
-    }
-    header {
-    }
-    <div class="social-links">
-  <a href="https://www.instagram.com/shoav_khan_00" target="_blank">📸 Instagram</a>
-  <a href="https://t.me/+tWs1FaLCH2w2NjFl" target="_blank">📢 Telegram</a>
-</div>
-    .container {
-      padding: 15px;
-    }
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 15px;
-    }
-    .movie-card {
-      background: #1a1a1a;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.7);
-    }
-    .movie-card img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-      }
-    }
-    .movie-card .info {
-      padding: 10px;
-    }
-    .movie-card h3 {
-      font-size: 14px;
-      margin: 5px 0;
-    }
-    .movie-card p {
-      font-size: 12px;
-      color: #bbb;
-      margin: 4px 0;
-    }
-    .download-btn {
-      display: block;
-      margin-top: 8px;
-      text-align: center;
-      padding: 8px;
-      background: #00e5ff;
-      color: #000;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-    .download-btn:hover {
-      background: #00bcd4;
-    }
-    .telegram {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #0088cc;
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 14px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    }
-    footer {
-      margin-top: 20px;
-      text-align: center;
-      padding: 10px;
-      font-size: 12px;
-      color: #777;
-      border-top: 1px solid #222;
-    }
-  </style>
-</head>
-  <style>
-    body  {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #0f0f0f;
-  color: #ffffff;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💘 Personality Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-header {
-  background: #111;
-  padding: 15px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #00e5ff;
-  border-bottom: 1px solid #222;
-}
-
-.search-box {
-  width: 90%;
-  max-width: 400px;
-  margin: 15px auto;
-  display: block;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: #1a1a1a;
-  color: #fff;
-  text-align: center;
-}
-
-.movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-  padding: 15px;
-}
-
-.movie-card {
-  background: #1a1a1a;
-  border-radius: 10px;
+body {
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  background: #0f0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
-    .social-links {
-  text-align: center;
-  margin: 15px 0;
+
+.bg-glow { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.glow1 {
+  position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,62,120,0.18) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: drift 8s ease-in-out infinite alternate;
+}
+.glow2 {
+  position: absolute; width: 350px; height: 350px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(120,80,255,0.15) 0%, transparent 70%);
+  bottom: -80px; right: -80px;
+  animation: drift 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes drift {
+  from { transform: translate(0,0); }
+  to { transform: translate(40px,40px); }
 }
 
-.social-links a {
-  display: inline-block;
-  margin: 5px 10px;
-  padding: 8px 14px;
-  background: #0088cc;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 20px;
-  font-size: 13px;
+.floaties { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.floaty {
+  position: absolute; font-size: 1.4rem; opacity: 0.06;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(110vh); opacity: 0.06; }
+  100% { transform: translateY(-10vh); opacity: 0; }
 }
 
-.social-links a:first-child {
-  background: #e1306c;
+.card {
+  position: relative; z-index: 1;
+  width: 92%; max-width: 440px;
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,62,120,0.1);
 }
+
+.topbar {
+  background: linear-gradient(135deg, #ff3e78, #c9184a);
+  padding: 22px 24px 18px; text-align: center; position: relative;
+}
+.topbar::after {
+  content: ''; position: absolute;
+  bottom: -16px; left: 0; right: 0;
+  height: 32px; background: #1a1a2e; border-radius: 50%;
+}
+.topbar .label {
+  font-size: 0.65rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 6px;
+}
+.topbar h1 { font-size: 1.6rem; font-weight: 900; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+
+.sec { display: none; padding: 34px 26px 26px; animation: popIn 0.4s cubic-bezier(.34,1.56,.64,1); }
+.sec.on { display: block; }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.big-emoji { font-size: 3.5rem; text-align: center; margin-bottom: 12px; }
+.sec-title { font-size: 1.3rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: 8px; line-height: 1.3; }
+.sec-sub { font-size: 0.83rem; color: rgba(255,255,255,0.4); text-align: center; line-height: 1.6; margin-bottom: 24px; }
+.pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 10px 14px;
+  color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-bottom: 8px;
+}
+
+.prog-label { font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+.prog-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 100px; margin-bottom: 24px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, #ff3e78, #ffd166); border-radius: 100px; transition: width 0.5s ease; }
+.q-text { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 20px; line-height: 1.4; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  padding: 13px 16px; border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.88rem; font-family: 'Nunito', sans-serif; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; text-align: left;
+}
+.opt:hover { border-color: #ff3e78; background: rgba(255,62,120,0.08); color: #ff7fab; transform: translateX(5px); }
+.opt.picked { border-color: #ff3e78; background: rgba(255,62,120,0.12); color: #fff; }
+
+/* REAL QUESTION */
+.real-wrap { text-align: center; }
+.real-emoji { font-size: 4rem; margin-bottom: 10px; animation: heartbeat 1s ease infinite; }
+@keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+.real-title { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 6px; line-height: 1.3; }
+.real-sub { font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+.real-name { color: #ff7fab; font-style: italic; }
+.ans-yes {
+  width: 100%; padding: 16px; border-radius: 16px; border: none;
+  background: linear-gradient(135deg, #ff3e78, #c9184a);
+  color: white; font-size: 1rem; font-weight: 800; font-family: 'Nunito', sans-serif;
+  cursor: pointer; box-shadow: 0 8px 24px rgba(255,62,120,0.4);
+  transition: transform 0.2s, box-shadow 0.2s; margin-bottom: 12px;
+}
+.ans-yes:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(255,62,120,0.5); }
+.ans-no {
+  width: 100%; padding: 14px; border-radius: 16px;
+  border: 1.5px solid rgba(255,255,255,0.1); background: transparent;
+  color: rgba(255,255,255,0.4); font-size: 0.9rem; font-weight: 600;
+  font-family: 'Nunito', sans-serif; cursor: pointer; transition: all 0.2s;
+}
+
+/* YES */
+.yes-result { text-align: center; }
+.confetti-row { font-size: 2rem; margin-bottom: 12px; }
+.yes-title { font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 8px; }
+.yes-glow {
+  background: linear-gradient(135deg, rgba(255,62,120,0.15), rgba(120,80,255,0.1));
+  border: 1px solid rgba(255,62,120,0.2);
+  border-radius: 20px; padding: 20px; margin-bottom: 20px;
+}
+.yes-msg { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+.heart-big { font-size: 3rem; display: block; margin: 10px auto; }
+
+/* NO */
+.no-result { text-align: center; }
+.no-emoji { font-size: 4rem; margin-bottom: 10px; }
+.no-title { font-size: 1.5rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
+.no-msg { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 20px; }
+.no-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 16px;
+  font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7;
+}
+
+.btn {
+  width: 100%; padding: 15px; border-radius: 16px; border: none;
+  background: linear-gradient(135deg, #ff3e78, #c9184a);
+  color: white; font-size: 0.95rem; font-weight: 800; font-family: 'Nunito', sans-serif;
+  cursor: pointer; box-shadow: 0 8px 24px rgba(255,62,120,0.35);
+  transition: transform 0.2s, box-shadow 0.2s; margin-top: 6px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,62,120,0.45); }
 </style>
+</head>
 <body>
 
-<header>My Collection</header>
+<div class="bg-glow"><div class="glow1"></div><div class="glow2"></div></div>
+<div class="floaties" id="floaties"></div>
 
-<input
-  type="text"
-  id="searchInput"
-  class="search-box"
-  placeholder="Search movies..."
->
+<div class="card">
+  <div class="topbar">
+    <div class="label">✨ Sirf Tumhare Liye</div>
+    <h1>Tumhari Personality Quiz 🍳</h1>
+  </div>
 
-<div class="movie-grid">
+  <!-- INTRO -->
+  <div class="sec on" id="s-intro">
+    <div class="big-emoji">🧠✨</div>
+    <h2 class="sec-title">Sirf 4 sawaal — sach sach jawab dena!</h2>
+    <p class="sec-sub">Yeh quiz tumhari real personality reveal karega. Koi sahi ya galat jawab nahi hai 😄</p>
+    <div class="pill">🍳 Cooking lovers ke liye specially designed</div>
+    <div class="pill">📱 12th ke baad wali life ka analysis bhi!</div>
+    <button class="btn" style="margin-top:18px" onclick="go('s-q')">Shuru Karo! 🚀</button>
+  </div>
 
-  <div class="movie-card">
-    <img src="https://via.placeholder.com/300x450">
-    <div class="info">
-      <h3>Ranjhanaa</h3>
-      <p>HD 4K</p>
+  <!-- QUIZ -->
+  <div class="sec" id="s-q">
+    <div class="prog-label" id="ql">Question 1 of 4</div>
+    <div class="prog-bar"><div class="prog-fill" id="pf" style="width:25%"></div></div>
+    <div class="q-text" id="qt"></div>
+    <div class="opts" id="qo"></div>
+  </div>
+
+  <!-- REAL QUESTION -->
+  <div class="sec" id="s-real">
+    <div class="real-wrap">
+      <div class="real-emoji">💘</div>
+      <h2 class="real-title">Last aur Sabse Important Sawal...</h2>
+      <p class="real-sub">Quiz algorithm ne ek final cheez detect ki hai 👀</p>
+      <div class="q-text" style="text-align:center; font-size:1.3rem; margin-bottom:6px; line-height:1.5;">
+        Kya tum <span class="real-name">Mujhe</span> ko<br>apna maante ho? 🥺
+      </div>
+      <p class="real-sub" style="margin-bottom:24px;">Sach mein socho... quiz sab jaanta hai 😶</p>
+      <button class="ans-yes" onclick="answer('yes')">💗 Haan... thoda thoda toh hai</button>
+      <button class="ans-no" id="noBtn" onclick="handleNo()">😶 Nahi bilkul bhi nahi</button>
     </div>
   </div>
 
-  <div class="movie-card">
-    <img src="https://via.placeholder.com/300x450">
-    <div class="info">
-      <h3>Mirzapur</h3>
-      <p>Season 1</p>
+  <!-- YES -->
+  <div class="sec" id="s-yes">
+    <div class="yes-result">
+      <div class="confetti-row">🎉🥳💕🎊❤️</div>
+      <h2 class="yes-title">Yesss!! 🥹🥹</h2>
+      <div class="yes-glow">
+        <p class="yes-msg">
+          Main jaanta tha! 😌<br><br>
+          Jo ladki itni achi cooking karti ho, itni hardworking ho ki 12th mein full focus hai — aur phir bhi mujhse baat karne ka time nikaalti ho... 🥺<br><br>
+          Tum bahut special ho.<br>
+          <strong style="color:#ff7fab;">Officially meri ho ab! 💖</strong>
+        </p>
+        <span class="heart-big">💑</span>
+      </div>
+      <p style="color:rgba(255,255,255,0.3); font-size:0.78rem; text-align:center;">P.S. Yeh quiz maine sirf tumhare liye banwaya tha 😂❤️<br>Ab jawab de diya — wapas nahi hoga! 😏</p>
     </div>
   </div>
 
-</div><header>My Collection</header><div class="container">
-  <div class="movie-grid"><!-- Movie / File Card 1 -->
-<div class="movie-card">
-  <img src="https://via.placeholder.com/300x450" alt="File Thumbnail" />
-  <div class="info">
-    <h3>Sample Video File</h3>
-    <p>Type: Video</p>
-    <p>Quality: HD</p>
-    <a href="https://www.mediafire.com/" class="download-btn" target="_blank">Download</a>
+  <!-- NO -->
+  <div class="sec" id="s-no">
+    <div class="no-result">
+      <div class="no-emoji">🤔</div>
+      <h2 class="no-title">Sach mein...?</h2>
+      <p class="no-msg">
+        Hmm... quiz ka data toh kuch aur hi keh raha tha 👀<br><br>
+        Jo ladki 12th mein busy hoke bhi regular baat karti ho, saath hansti ho — woh "bilkul nahi" nahi hoti na? 😏
+      </p>
+      <div class="no-card">
+        🍳 Pro tip: Jis tarah ek dish ko sahi time chahiye hota hai pakne ke liye — feelings ko bhi time lagta hai. Koi pressure nahi! 😊
+      </div>
+      <button class="btn" style="margin-top:16px" onclick="go('s-real')">Ek Baar Aur Socho 🥺</button>
+    </div>
   </div>
+
 </div>
 
-<!-- Movie / File Card 2 -->
-<div class="movie-card">
-  <img src="https://via.placeholder.com/300x450" alt="File Thumbnail" />
-  <div class="info">
-    <h3>Sample APK File</h3>
-    <p>Type: APK</p>
-    <p>Version: Latest</p>
-    <a href="https://www.mediafire.com/" class="download-btn" target="_blank">Download</a>
-  </div>
-</div>
+<script>
+const qs = [
+  {
+    t: "🍳 Jab tum kuch naya dish banao aur woh perfect bane — tumhara pehla reaction kya hota hai?",
+    o: [
+      "Photo leke pehle Instagram pe daalo 📸",
+      "Khud taste karke celebrate karti hoon 😋",
+      "Jisko pasand hai usse khilao 🥰",
+      "Agle dish ka plan shuru 😤"
+    ]
+  },
+  {
+    t: "📱 12th ke baad pehla kaam kya karogi jab naya phone milega?",
+    o: [
+      "Saari apps install karti hoon pehle 😂",
+      "Wallpaper set karna — priority! 🖼️",
+      "Uss banda ko call karti hoon jisko karna chahti hoon 👀",
+      "Kuch nahi, bas feel karti hoon usse 🤩"
+    ]
+  },
+  {
+    t: "🍽️ Koi tumse pooche 'Kya banaya aaj?' — tum kya reply karti ho?",
+    o: [
+      "Seedha photo bhejti hoon 😄",
+      "Pehle poochti hoon 'Kyun, khana hai?' 😏",
+      "Detail mein recipe batati hoon 👩‍🍳",
+      "Depend karta hai kaun pooch raha hai 👀"
+    ]
+  },
+  {
+    t: "📚 Exams ke time tumhara mood kaisa rehta hai?",
+    o: [
+      "Full stress but padh leti hoon 💪",
+      "Cooking karke stress release karti hoon 🍳",
+      "Kisi se baat karke better feel hota hai 💬",
+      "Sab theek ho jaayega wali energy 😌"
+    ]
+  }
+];
 
-  </div>
-</div><a class="telegram" href="https://t.me/yourchannel" target="_blank">Join Telegram</a>
+let cur = 0;
 
-<footer>
-  © 2026 My Collection | All files belong to their respective owners
-</footer><script>
-const searchInput = document.getElementById("searchInput");
-const movieCards = document.querySelectorAll(".movie-card");
+function go(id) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  if (id === 's-q') renderQ();
+}
 
-searchInput.addEventListener("keyup", () => {
-  const value = searchInput.value.toLowerCase();
-
-  movieCards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(value) ? "block" : "none";
+function renderQ() {
+  const q = qs[cur];
+  document.getElementById('ql').textContent = `Question ${cur+1} of 4`;
+  document.getElementById('pf').style.width = `${((cur+1)/4)*100}%`;
+  document.getElementById('qt').textContent = q.t;
+  const c = document.getElementById('qo');
+  c.innerHTML = '';
+  q.o.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = o;
+    b.onclick = () => pick(b);
+    c.appendChild(b);
   });
-});
-  </script>
-  <script>
-const searchInput = document.getElementById("searchInput");
-const movieCards = document.querySelectorAll(".movie-card");
+}
 
-searchInput.addEventListener("keyup", () => {
-  const value = searchInput.value.toLowerCase();
+function pick(btn) {
+  document.querySelectorAll('.opt').forEach(o => o.classList.remove('picked'));
+  btn.classList.add('picked');
+  setTimeout(() => {
+    cur++;
+    if (cur < 4) renderQ();
+    else go('s-real');
+  }, 450);
+}
 
-  movieCards.forEach(card => {
-    const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(value) ? "block" : "none";
-  });
-});
-  </script>
+function answer(a) {
+  if (a === 'yes') go('s-yes');
+  else go('s-no');
+}
+
+let noCount = 0;
+function handleNo() {
+  noCount++;
+  if (noCount === 1) {
+    document.getElementById('noBtn').textContent = '😶 Pakka? Soch lo...';
+  } else if (noCount === 2) {
+    document.getElementById('noBtn').textContent = '😑 Sach mein nahi?? Last chance!';
+  } else {
+    go('s-no');
+  }
+}
+
+// floaties
+const syms = ['💕','🍳','😂','🥺','❤️','📱','💌','🌹'];
+const fl = document.getElementById('floaties');
+for (let i = 0; i < 16; i++) {
+  const el = document.createElement('span');
+  el.className = 'floaty';
+  el.textContent = syms[Math.floor(Math.random() * syms.length)];
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.animationDuration = (10 + Math.random() * 14) + 's';
+  el.style.animationDelay = (Math.random() * 12) + 's';
+  fl.appendChild(el);
+}
+</script>
 </body>
 </html>
-<div class="movie-card">
-  <img src=<a href="https://ibb.co/5Wm4DqGd"><img src="https://i.ibb.co/qMKjGb7z/96ea5411a3b23a2e9cb6ff643dda4594.jpg" alt="96ea5411a3b23a2e9cb6ff643dda4594" border="0"></a>"="File Thumbnail" />
-  <div class="info">
-    <h3>ranjhanaa</h3>
-    <p>Type: Video</p>
-    <p>Quality: HD 4k</p>
-    <a href="https://t.me/+990QytHx1MswYzQ1" class="download-btn" target="_blank">Download</a>
-  </div>
-</div>
-<div class="movie-card">
-  <img src="https://postimg.cc/rdFQZfy0"alt="Poster">
-  <div class="info">
-    <h3>ranjhanaa Here</h3>
-    <p>Type: Video</p>
-    <p>Quality: 1080p HD</p>
-    <a href="https://gplinks.co/caRSFbsu" class="download-btn">Download</a>
-  </div>
-</div>
-<div class="movie-card">
-  <img src="https://postimg.cc/rdFQZfy0"alt="Poster">
-  <div class="info">
-    <h3>ranjhanaa Here</h3>
-    <p>Type: Video</p>
-    <p>Quality: 1080p HD</p>
-    <a href="https://gplinks.co/caRSFbsu" class="download-btn">Download</a>
-  </div>
-</div>
-<div class="movie-card">
-  <img src="https://i.ibb.co/XRPnHBz/5d4f885809deab1f9f0a2b78182ceda9.jpg" alt="IT welcome to derry Poster">
-
-  <div class="movie info">
-    <h3>IT welcome to derry</h3>
-    <p>Quality: 1080p HD</p>
-
-    <a href="https://gplinks.co/M7PDiIX" target="_blank" class="download-btn">
-      Download
-    </a>
-  </div>
-</div>
-
-
-
